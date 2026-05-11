@@ -1,4 +1,4 @@
-name: Go
+name: Linux, build and test
 
 on:
   push:
@@ -16,9 +16,16 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version-file: go.mod
+
+    - name: Show Go version
+      run: go version
         
     - name: Build
       run: go build -v ./...
 
     - name: Test
       run: go test -v ./...
+
+    - name: Run ccnv
+      run: ./ccnv -f usd -a 10 -t eur
+
